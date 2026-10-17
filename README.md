@@ -2,7 +2,7 @@
 
 A Chrome extension (and website) that inspects any online store in one click: **is it Shopify, which theme and apps, how big is the catalog, what are the prices**, plus an **SEO check** of the page and **AI tips** on what to improve.
 
-**Live site:** _coming soon_ · Download the extension, or inspect a store online without installing anything.
+**Live site:** https://shopify-store-inspector.vercel.app · [Download the extension](https://shopify-store-inspector.vercel.app/static/shopify-store-inspector.zip), or [inspect a store online](https://shopify-store-inspector.vercel.app/inspect) without installing anything.
 
 <p>
   <img src="docs/popup.png" width="380" alt="The extension popup on kith.com: Shopify detected, 25,001 products, price range and more">
@@ -39,7 +39,7 @@ The page is fetched safely: only public `https` sites, no IP addresses or local 
 
 ## Install the extension
 
-1. Download `shopify-store-inspector.zip` from the website and unzip it.
+1. Download [shopify-store-inspector.zip](https://shopify-store-inspector.vercel.app/static/shopify-store-inspector.zip) from the website and unzip it.
 2. Open `chrome://extensions` and turn on **Developer mode**.
 3. Click **Load unpacked** and select the unzipped folder.
 4. Pin the 🔎 icon and click it on any store.
