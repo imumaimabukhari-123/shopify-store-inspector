@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inspect a store · Shopify Store Inspector</title>
+  <meta name="description" content="Inspect any online store: is it Shopify, which theme and apps, catalog size and prices, an SEO check and AI tips.">
+  <meta name="author" content="Syeda Umaima">
+  <link rel="icon" href="/static/icon.png">
+  <link rel="stylesheet" href="/static/site.css">
+  <link rel="stylesheet" href="/extension/report.css">
+  <style>
+    .intro { padding: 40px 0 20px; }
+    .intro h1 { font-size: clamp(26px, 4vw, 36px); margin: 0 0 8px; letter-spacing: -0.02em; }
+    .intro p { margin: 0 0 18px; color: var(--muted); }
+    form { display: flex; gap: 10px; max-width: 640px; }
+    @media (max-width: 520px) { form { flex-direction: column; } }
+    form input { flex: 1; min-width: 0; padding: 12px 15px; border-radius: 10px; font: inherit; font-size: 16px; border: 1px solid var(--line); background: var(--panel); color: var(--text); }
+    form input:focus { outline: 2px solid var(--accent); border-color: transparent; }
+    .examples { margin-top: 12px; font-size: 14px; color: var(--muted); }
+    .examples a { margin-right: 10px; }
+    #out { margin: 28px 0 56px; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="/"><img class="brand-mark" src="/static/icon.png" alt=""><span>Shopify Store Inspector</span></a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/inspect" class="active">Inspect a store</a>
+        <a href="/guide">Guide</a>
+        <a href="/#developer">Developer</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header class="intro">
+      <h1>Inspect any online store</h1>
+      <p>The same report the Chrome extension shows, right here in your browser. Nothing to install.</p>
+      <form id="form">
+        <input id="url" placeholder="Store address, e.g. kith.com" autocomplete="off" required aria-label="Store address">
+        <button class="btn primary" type="submit">Inspect</button>
+      </form>
+      <div class="examples">Try: <a href="/inspect?url=kith.com">kith.com</a><a href="/inspect?url=allbirds.com">allbirds.com</a><a href="/inspect?url=colourpop.com">colourpop.com</a><a href="/inspect?url=gymshark.com">gymshark.com</a></div>
+    </header>
+    <div id="out"></div>
+  </div>
+
+  <footer class="site-foot">
+    © 2026 Syeda Umaima · Shopify Store Inspector ·
+    <a href="mailto:imumaimabukhari@gmail.com">imumaimabukhari@gmail.com</a> ·
+    <a href="https://www.fiverr.com/umaima886" target="_blank" rel="noopener">Fiverr</a> ·
+    <a href="/privacy">Privacy</a>
+  </footer>
+
+  <script src="/extension/report.js"></script>
+  <script>
+    const out = document.getElementById("out");
+    const input = document.getElementById("url");
+    async function run(url) {
+      input.value = url;
+      SSI.loading(out, "Inspecting " + url + "… this takes a few seconds.");
+      try {
+        const resp = await fetch("/api/inspect?url=" + encodeURIComponent(url));
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok) throw new Error(typeof data.detail === "string" ? data.detail : "Couldn't inspect this website. Please try again.");
+        document.title = (data.store?.name || data.domain) + " · Shopify Store Inspector";
+        SSI.render(out, data, { api: "", wide: true });
+      } catch (e) { SSI.error(out, e.message); }
+    }
+    document.getElementById("form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const v = input.value.trim();
+      if (!v) return;
+      history.pushState(null, "", "/inspect?url=" + encodeURIComponent(v));
+      run(v);
+    });
+    const start = new URLSearchParams(location.search).get("url");
+    if (start) run(start);
+  </script>
+</body>
+</html>

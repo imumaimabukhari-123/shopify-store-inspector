@@ -1,0 +1,79 @@
+/* Report styles, shared by the extension popup and the website. Everything is scoped to .ssi. */
+.ssi {
+  --s-bg: #f7f6fb; --s-panel: #ffffff; --s-text: #1d1b26; --s-muted: #676379; --s-line: #e6e3ef;
+  --s-accent: #6d28d9; --s-accent-soft: #efe9fc; --s-green: #138a5b; --s-green-soft: #e3f5ed;
+  --s-amber: #a45f00; --s-amber-soft: #fff3dc; --s-red: #c62828; --s-red-soft: #fdecec;
+  font: 14px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--s-text);
+}
+@media (prefers-color-scheme: dark) {
+  .ssi {
+    --s-bg: #14121b; --s-panel: #1d1a27; --s-text: #ebe8f5; --s-muted: #a29db5; --s-line: #2e2a3c;
+    --s-accent: #a78bfa; --s-accent-soft: #2a2342; --s-green: #4ade9b; --s-green-soft: #163428;
+    --s-amber: #f5c26b; --s-amber-soft: #3a2f17; --s-red: #ff8a8a; --s-red-soft: #3d1c1c;
+  }
+}
+.ssi * { box-sizing: border-box; }
+.ssi .card { background: var(--s-panel); border: 1px solid var(--s-line); border-radius: 12px; padding: 14px; margin-bottom: 12px; }
+.ssi h3 { margin: 0 0 10px; font-size: 14px; display: flex; align-items: center; gap: 6px; }
+.ssi .muted { color: var(--s-muted); }
+.ssi .head { display: flex; align-items: center; gap: 12px; }
+.ssi .head .logo { width: 42px; height: 42px; border-radius: 10px; display: grid; place-items: center; font-size: 22px; flex-shrink: 0; background: var(--s-accent-soft); }
+.ssi .head h2 { margin: 0; font-size: 17px; line-height: 1.25; word-break: break-word; }
+.ssi .head a { color: var(--s-muted); font-size: 12.5px; text-decoration: none; word-break: break-all; }
+.ssi .badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 9px; border-radius: 99px; margin-top: 4px; }
+.ssi .badge.yes { background: var(--s-green-soft); color: var(--s-green); }
+.ssi .badge.no { background: var(--s-amber-soft); color: var(--s-amber); }
+.ssi .signals { margin: 8px 0 0; padding-left: 18px; color: var(--s-muted); font-size: 12.5px; }
+.ssi .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.ssi.wide .stats { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 640px) { .ssi.wide .stats { grid-template-columns: repeat(2, 1fr); } }
+.ssi .stat { background: var(--s-bg); border-radius: 10px; padding: 9px 10px; }
+.ssi .stat b { display: block; font-size: 16px; line-height: 1.25; word-break: break-word; }
+.ssi .stat span { font-size: 12px; color: var(--s-muted); }
+.ssi .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.ssi .chip { background: var(--s-accent-soft); color: var(--s-text); border-radius: 99px; padding: 3px 10px; font-size: 12.5px; }
+.ssi .chip small { color: var(--s-muted); }
+.ssi .bars { display: grid; gap: 6px; }
+.ssi .bar { display: grid; grid-template-columns: minmax(0, 1fr) 40px; gap: 8px; align-items: center; font-size: 12.5px; }
+.ssi .bar .track { grid-column: 1 / -1; height: 6px; border-radius: 99px; background: var(--s-bg); overflow: hidden; }
+.ssi .bar .fill { height: 100%; background: var(--s-accent); border-radius: 99px; }
+.ssi .bar .n { text-align: right; color: var(--s-muted); }
+.ssi .bar .label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ssi ul.plain { list-style: none; margin: 0; padding: 0; }
+.ssi ul.plain li { padding: 5px 0; border-top: 1px solid var(--s-line); font-size: 13px; }
+.ssi ul.plain li:first-child { border-top: 0; }
+.ssi .score { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+.ssi .ring { --p: 0; --c: var(--s-green); width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+  background: conic-gradient(var(--c) calc(var(--p) * 1%), var(--s-bg) 0); display: grid; place-items: center; }
+.ssi .ring b { width: 50px; height: 50px; border-radius: 50%; background: var(--s-panel); display: grid; place-items: center; font-size: 17px; }
+.ssi .check { display: grid; grid-template-columns: 22px 1fr; gap: 6px; padding: 7px 0; border-top: 1px solid var(--s-line); }
+.ssi .check .i { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 800; }
+.ssi .check.pass .i { background: var(--s-green-soft); color: var(--s-green); }
+.ssi .check.warn .i { background: var(--s-amber-soft); color: var(--s-amber); }
+.ssi .check.fail .i { background: var(--s-red-soft); color: var(--s-red); }
+.ssi .check b { font-size: 13px; }
+.ssi .check div div { font-size: 12.5px; color: var(--s-muted); word-break: break-word; }
+.ssi .btn { border: 0; border-radius: 9px; padding: 9px 14px; font: inherit; font-weight: 600; cursor: pointer; background: var(--s-accent); color: #fff; }
+.ssi .btn.ghost { background: var(--s-accent-soft); color: var(--s-accent); }
+.ssi .btn:disabled { opacity: .6; cursor: default; }
+.ssi .tip { padding: 9px 0; border-top: 1px solid var(--s-line); }
+.ssi .tip:first-of-type { border-top: 0; }
+.ssi .tip b { font-size: 13.5px; }
+.ssi .tip p { margin: 3px 0 0; font-size: 13px; color: var(--s-muted); }
+.ssi .impact { font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 99px; margin-left: 6px; text-transform: uppercase; vertical-align: 1px; }
+.ssi .impact.high { background: var(--s-red-soft); color: var(--s-red); }
+.ssi .impact.medium { background: var(--s-amber-soft); color: var(--s-amber); }
+.ssi .impact.low { background: var(--s-green-soft); color: var(--s-green); }
+.ssi .note { background: var(--s-amber-soft); color: var(--s-amber); border-radius: 10px; padding: 9px 12px; font-size: 13px; margin-bottom: 12px; }
+.ssi .error { background: var(--s-red-soft); color: var(--s-red); border-radius: 10px; padding: 12px; }
+.ssi .loading { text-align: center; padding: 28px 10px; color: var(--s-muted); }
+.ssi .spinner { width: 28px; height: 28px; border: 3px solid var(--s-line); border-top-color: var(--s-accent); border-radius: 50%; margin: 0 auto 10px; animation: ssi-spin 0.8s linear infinite; }
+@keyframes ssi-spin { to { transform: rotate(360deg); } }
+.ssi .foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; color: var(--s-muted); }
+.ssi .cols { display: grid; gap: 12px; }
+.ssi.wide .cols { grid-template-columns: 1fr 1fr; align-items: start; }
+@media (max-width: 760px) { .ssi.wide .cols { grid-template-columns: 1fr; } }
+/* Reset classes the host website might also style */
+.ssi .tip { background: none; border-left: 0; border-radius: 0; margin: 0; }
+.ssi .card h3 { color: var(--s-text); }
+@media (prefers-color-scheme: dark) { .ssi .btn:not(.ghost) { color: #14121b; } }

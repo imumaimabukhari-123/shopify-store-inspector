@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy · Shopify Store Inspector</title>
+  <meta name="author" content="Syeda Umaima">
+  <link rel="icon" href="/static/icon.png">
+  <link rel="stylesheet" href="/static/site.css">
+  <style>
+    .wrap.narrow { max-width: 760px; padding: 48px 24px 56px; }
+    h1 { font-size: clamp(28px, 4vw, 36px); margin: 0 0 8px; }
+    h2 { font-size: 20px; margin: 28px 0 8px; }
+    p, li { color: var(--text); }
+    .muted { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="/"><img class="brand-mark" src="/static/icon.png" alt=""><span>Shopify Store Inspector</span></a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/inspect">Inspect a store</a>
+        <a href="/guide">Guide</a>
+        <a href="/#developer">Developer</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap narrow">
+    <h1>Privacy</h1>
+    <p class="muted">Last updated: October 2026</p>
+
+    <h2>What the extension reads</h2>
+    <p>Only the <b>web address of the tab you click it on</b>, and only at the moment you click. It uses Chrome's
+       <code>activeTab</code> permission, so it can't see your other tabs, your browsing history or anything you type.</p>
+
+    <h2>What it sends</h2>
+    <ul>
+      <li>The store's address is sent to this website's inspector, which visits the store's <b>public</b> pages
+          (the page itself, <code>/meta.json</code> and <code>/products.json</code>) to build the report.</li>
+      <li>When you click <b>Get AI tips</b>, the report is sent to Google Gemini to write the tips.</li>
+    </ul>
+
+    <h2>What is stored</h2>
+    <p>Nothing. Reports aren't saved, there are no accounts, no cookies and no tracking. To stop abuse, the server
+       briefly counts requests per visitor (for the hourly limit) and forgets them after an hour.</p>
+
+    <h2>Contact</h2>
+    <p>Questions? Email <a href="mailto:imumaimabukhari@gmail.com">imumaimabukhari@gmail.com</a>.</p>
+  </div>
+
+  <footer class="site-foot">
+    © 2026 Syeda Umaima · Shopify Store Inspector ·
+    <a href="mailto:imumaimabukhari@gmail.com">imumaimabukhari@gmail.com</a> ·
+    <a href="https://www.fiverr.com/umaima886" target="_blank" rel="noopener">Fiverr</a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guide · Shopify Store Inspector</title>
+  <meta name="description" content="How to install and use the Shopify Store Inspector Chrome extension, step by step.">
+  <meta name="author" content="Syeda Umaima">
+  <link rel="icon" href="/static/icon.png">
+  <link rel="stylesheet" href="/static/site.css">
+  <style>
+    .wrap.narrow { max-width: 820px; padding-bottom: 40px; }
+    .intro { padding: 48px 0 24px; }
+    .intro h1 { font-size: clamp(28px, 4vw, 38px); margin: 0 0 10px; letter-spacing: -0.02em; }
+    .intro p { color: var(--muted); font-size: 17px; margin: 0; }
+    .toc { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; margin-bottom: 40px; }
+    .toc b { display: block; margin-bottom: 6px; }
+    .toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 32px; }
+    @media (max-width: 600px) { .toc ol { columns: 1; } }
+    .toc a { text-decoration: none; }
+    section { margin-bottom: 44px; }
+    h2 { font-size: 23px; margin: 0 0 14px; }
+    .step { display: flex; gap: 14px; margin-bottom: 18px; }
+    .step > div:last-child { min-width: 0; }
+    .step .n { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; margin-top: 2px; background: var(--accent); color: #fff; display: grid; place-items: center; font-weight: 700; }
+    .step h3 { margin: 4px 0 4px; font-size: 17px; }
+    .step p { margin: 0 0 6px; }
+    .step ul { margin: 4px 0 0; padding-left: 20px; }
+    details.faq { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; margin-bottom: 10px; }
+    details.faq summary { cursor: pointer; font-weight: 600; }
+    details.faq p { margin: 10px 0 0; color: var(--muted); }
+    .end { text-align: center; padding: 8px 0 24px; }
+    .end .btn { margin: 4px; }
+    code { font: 14px ui-monospace, Consolas, monospace; background: var(--panel); border: 1px solid var(--line); border-radius: 5px; padding: 0 5px; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="/"><img class="brand-mark" src="/static/icon.png" alt=""><span>Shopify Store Inspector</span></a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/inspect">Inspect a store</a>
+        <a href="/guide" class="active">Guide</a>
+        <a href="/#developer">Developer</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap narrow">
+    <header class="intro">
+      <h1>How to use the Shopify Store Inspector</h1>
+      <p>Install the extension in a minute, then inspect any store with one click. No coding needed.</p>
+    </header>
+
+    <nav class="toc" aria-label="On this page">
+      <b>On this page</b>
+      <ol>
+        <li><a href="#install">Installing the extension</a></li>
+        <li><a href="#use">Inspecting a store</a></li>
+        <li><a href="#report">Reading the report</a></li>
+        <li><a href="#online">Using it without installing</a></li>
+        <li><a href="#problems">Fixing problems</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ol>
+    </nav>
+
+    <section id="install">
+      <h2>1. Installing the extension</h2>
+      <p>Works in Google Chrome, Microsoft Edge and Brave on a computer.</p>
+      <div class="step"><div class="n">1</div><div>
+        <h3>Download and unzip</h3>
+        <p>On the <a href="/">home page</a>, click <b>Download the extension</b>. Open your <b>Downloads</b> folder,
+           right-click <code>shopify-store-inspector.zip</code> and choose <b>Extract All…</b>, then <b>Extract</b>.</p>
+      </div></div>
+      <div class="step"><div class="n">2</div><div>
+        <h3>Open the extensions page</h3>
+        <p>In Chrome's address bar, type <code>chrome://extensions</code> and press <kbd>Enter</kbd>. (In Edge: <code>edge://extensions</code>.)</p>
+      </div></div>
+      <div class="step"><div class="n">3</div><div>
+        <h3>Turn on Developer mode</h3>
+        <p>Switch on <b>Developer mode</b> in the top-right corner. New buttons appear.</p>
+      </div></div>
+      <div class="step"><div class="n">4</div><div>
+        <h3>Load the folder</h3>
+        <p>Click <b>Load unpacked</b> and select the unzipped <b>shopify-store-inspector</b> folder (the one that contains <code>manifest.json</code>).</p>
+      </div></div>
+      <div class="step"><div class="n">5</div><div>
+        <h3>Pin it</h3>
+        <p>Click the puzzle-piece icon 🧩 next to the address bar, then the pin 📌 next to <b>Shopify Store Inspector</b>. The purple 🔎 icon now stays in your toolbar.</p>
+      </div></div>
+      <div class="tip">💡 Keep the unzipped folder. If you delete it, Chrome removes the extension.</div>
+    </section>
+
+    <section id="use">
+      <h2>2. Inspecting a store</h2>
+      <ol>
+        <li>Open any online store in a tab, for example <code>kith.com</code>.</li>
+        <li>Click the purple 🔎 icon. The report appears in a few seconds.</li>
+        <li>To check another store without leaving the page, type its address in the box at the top of the popup and click <b>Go</b>.</li>
+        <li>Click <b>Get AI tips</b> for 5 suggestions, or <b>Copy report</b> to paste a summary into an email or proposal.</li>
+      </ol>
+      <div class="tip">💡 It inspects the page you're on. Open a product or collection page to check that page's SEO.</div>
+    </section>
+
+    <section id="report">
+      <h2>3. Reading the report</h2>
+      <table>
+        <thead><tr><th>Section</th><th>What it tells you</th></tr></thead>
+        <tbody>
+          <tr><td><b>Shopify store ✓</b></td><td>Whether the site runs on Shopify, and the evidence (headers, theme code, Shopify CDN files).</td></tr>
+          <tr><td><b>Store at a glance</b></td><td>Number of products and collections, price range, average price, % on sale, % sold out, currency and shipping countries.</td></tr>
+          <tr><td><b>Theme</b></td><td>The theme's name and version, and whether it's from the Shopify Theme Store or custom-made.</td></tr>
+          <tr><td><b>Apps &amp; tools</b></td><td>Apps spotted in the page's code, grouped by type (email, reviews, payments, support, analytics…).</td></tr>
+          <tr><td><b>Catalog</b></td><td>Top product types, newest products, and products missing images or descriptions.</td></tr>
+          <tr><td><b>SEO check</b></td><td>9 checks of the current page with a score out of 100. ✓ = good, ! = could be better, ✕ = needs fixing.</td></tr>
+          <tr><td><b>AI tips</b></td><td>The 5 changes that would help most, each marked high, medium or low impact.</td></tr>
+        </tbody>
+      </table>
+      <div class="warn">⚠️ Prices and sales are based on the first 250 products. Apps are only detected if they load on the page, so some apps (for example, back-office apps) can't be seen.</div>
+    </section>
+
+    <section id="online">
+      <h2>4. Using it without installing</h2>
+      <p>On a phone, or don't want to install anything? Use <a href="/inspect">Inspect a store</a> on this website. Type a store's address and you get the same report.</p>
+    </section>
+
+    <section id="problems">
+      <h2>5. Fixing problems</h2>
+      <table>
+        <thead><tr><th>You see…</th><th>What to do</th></tr></thead>
+        <tbody>
+          <tr><td>"Open a store first"</td><td>You clicked the icon on a Chrome page (like a new tab). Open a website first, or type an address in the box.</td></tr>
+          <tr><td>"Couldn't open that website"</td><td>Check the address. Some sites block automatic visits; try another page of the store.</td></tr>
+          <tr><td>"Not a Shopify store"</td><td>The site runs on something else (WooCommerce, Wix…). The SEO check still works.</td></tr>
+          <tr><td>🔒 "password-protected"</td><td>The store isn't open to the public yet, so only limited data is visible.</td></tr>
+          <tr><td>"Couldn't reach the inspector"</td><td>Check your internet connection and try again.</td></tr>
+          <tr><td>"You've reached the hourly limit"</td><td>This free tool allows about 40 inspections and 15 AI tips per hour. Try again later.</td></tr>
+          <tr><td>"Manifest file is missing" when loading</td><td>You selected the wrong folder. Select the folder that directly contains <code>manifest.json</code>.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="faq">
+      <h2>6. FAQ</h2>
+      <details class="faq"><summary>Is it free?</summary><p>Yes. The AI tips run on Google Gemini's free tier, with fair-use limits per hour.</p></details>
+      <details class="faq"><summary>Is it safe? What does it read?</summary><p>It only reads the address of the tab you click it on, and only when you click it. See the <a href="/privacy">privacy page</a> for details.</p></details>
+      <details class="faq"><summary>Why isn't it on the Chrome Web Store?</summary><p>It's a portfolio project, so it's installed from the download for now. It uses only one permission (<code>activeTab</code>).</p></details>
+      <details class="faq"><summary>Can you build a custom extension for me?</summary><p>Yes. I build Chrome extensions and Shopify tools. See the <a href="/#developer">Developer</a> section.</p></details>
+    </section>
+
+    <div class="end">
+      <a class="btn primary" href="/static/shopify-store-inspector.zip" download>⬇ Download the extension</a>
+      <a class="btn" href="/inspect">Inspect a store online</a>
+    </div>
+  </div>
+
+  <footer class="site-foot">
+    © 2026 Syeda Umaima · Shopify Store Inspector ·
+    <a href="mailto:imumaimabukhari@gmail.com">imumaimabukhari@gmail.com</a> ·
+    <a href="https://www.fiverr.com/umaima886" target="_blank" rel="noopener">Fiverr</a> ·
+    <a href="/privacy">Privacy</a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shopify Store Inspector</title>
+  <meta name="description" content="A free Chrome extension that inspects any online store: is it Shopify, which theme and apps, catalog size and prices, an SEO check and AI tips.">
+  <meta name="author" content="Syeda Umaima">
+  <link rel="icon" href="/static/icon.png">
+  <link rel="stylesheet" href="/static/site.css">
+  <style>
+    .hero { padding: 56px 0 32px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+    @media (max-width: 860px) { .hero { grid-template-columns: 1fr; text-align: center; } .hero .cta { justify-content: center; } .hero form { margin: 0 auto; } }
+    .pill { display: inline-block; background: var(--accent-soft); color: var(--accent); font-size: 13px; font-weight: 600; padding: 5px 12px; border-radius: 20px; margin-bottom: 16px; }
+    .hero h1 { font-size: clamp(30px, 4.6vw, 46px); line-height: 1.12; margin: 0 0 16px; letter-spacing: -0.02em; }
+    .hero h1 span { color: var(--accent); }
+    .hero p { font-size: 18px; color: var(--muted); margin: 0 0 24px; }
+    .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero form { display: flex; gap: 8px; max-width: 460px; margin-top: 18px; }
+    .hero form input { flex: 1; min-width: 0; padding: 11px 14px; border-radius: 10px; font: inherit; border: 1px solid var(--line); background: var(--panel); color: var(--text); }
+    .hero form input:focus { outline: 2px solid var(--accent); border-color: transparent; }
+    .hero small { display: block; margin-top: 8px; color: var(--muted); }
+    .shot { width: 100%; max-width: 440px; height: auto; border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 20px 50px rgba(0,0,0,.25); justify-self: center; }
+    .highlights { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 16px 0 64px; }
+    @media (max-width: 760px) { .highlights { grid-template-columns: repeat(2, 1fr); } }
+    .highlight { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px; text-align: center; }
+    .highlight b { display: block; font-size: 24px; line-height: 1.2; color: var(--accent); }
+    .highlight span { color: var(--muted); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="/"><img class="brand-mark" src="/static/icon.png" alt=""><span>Shopify Store Inspector</span></a>
+      <div class="nav-links">
+        <a href="/" class="active">Home</a>
+        <a href="/inspect">Inspect a store</a>
+        <a href="/guide">Guide</a>
+        <a href="/#developer">Developer</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header class="hero">
+      <div>
+        <div class="pill">Free Chrome extension · no sign-up</div>
+        <h1>See what's behind<br><span>any Shopify store.</span></h1>
+        <p>One click shows a store's theme, apps, catalog size, prices and sales, plus an SEO check of the page
+           and AI tips on what to improve.</p>
+        <div class="cta">
+          <a class="btn primary" href="/static/shopify-store-inspector.zip" download>⬇ Download the extension</a>
+          <a class="btn" href="/guide#install">How to install</a>
+        </div>
+        <form action="/inspect">
+          <input name="url" placeholder="Or inspect a store online, e.g. kith.com" aria-label="Store address" required>
+          <button class="btn primary" type="submit">Inspect</button>
+        </form>
+        <small>Works with Chrome, Edge and Brave.</small>
+      </div>
+      <img class="shot" src="/static/preview.png" width="440" height="700" alt="The extension's popup showing a Shopify store's stats, theme and apps">
+    </header>
+
+    <div class="highlights">
+      <div class="highlight"><b>1 click</b><span>on any store</span></div>
+      <div class="highlight"><b>40+</b><span>apps it can recognise</span></div>
+      <div class="highlight"><b>9</b><span>SEO checks with a score</span></div>
+      <div class="highlight"><b>AI</b><span>tips on what to fix first</span></div>
+    </div>
+
+    <section id="features">
+      <h2>What it shows you</h2>
+      <p class="sub">All from data the store shows publicly. No logins, no admin access needed.</p>
+      <div class="grid three">
+        <div class="card"><div class="icon">🛍️</div><h3>Is it Shopify?</h3><p>Detects Shopify from the store's headers and code, and shows the evidence.</p></div>
+        <div class="card"><div class="icon">🎨</div><h3>Theme</h3><p>The theme, its version, and whether it's from the Theme Store or custom-built.</p></div>
+        <div class="card"><div class="icon">🧩</div><h3>Apps &amp; tools</h3><p>Email, reviews, payments, support, analytics and more: Klaviyo, Judge.me, Afterpay, Gorgias…</p></div>
+        <div class="card"><div class="icon">📊</div><h3>Catalog stats</h3><p>Product and collection counts, price range, average price, items on sale and sold out.</p></div>
+        <div class="card"><div class="icon">🔍</div><h3>SEO check</h3><p>Title, meta description, headings, image alt text, social tags, structured data… with a score.</p></div>
+        <div class="card"><div class="icon">✨</div><h3>AI tips</h3><p>Google Gemini reads the report and suggests the 5 changes that would help the store most.</p></div>
+      </div>
+    </section>
+
+    <section id="who">
+      <h2>Who it's for</h2>
+      <p class="sub">Anyone who works with online stores.</p>
+      <div class="grid three">
+        <div class="card"><h3>Store owners</h3><p>Check your own store's SEO, and see which apps and themes successful competitors use.</p></div>
+        <div class="card"><h3>Freelancers &amp; agencies</h3><p>Audit a client's store in seconds before a call, and copy the report into your proposal.</p></div>
+        <div class="card"><h3>Dropshippers &amp; researchers</h3><p>See a store's catalog size, prices and newest products at a glance.</p></div>
+      </div>
+    </section>
+
+    <section id="install">
+      <h2>Install it in 1 minute</h2>
+      <p class="sub">It isn't on the Chrome Web Store yet, so it's installed from the download. The <a href="/guide#install">guide</a> walks you through it step by step.</p>
+      <div class="grid four">
+        <div class="card"><div class="num">1</div><h3>Download</h3><p>Click <b>Download the extension</b> and unzip the file.</p></div>
+        <div class="card"><div class="num">2</div><h3>Open extensions</h3><p>Go to <code>chrome://extensions</code> in Chrome.</p></div>
+        <div class="card"><div class="num">3</div><h3>Developer mode</h3><p>Turn on <b>Developer mode</b> (top right), click <b>Load unpacked</b>.</p></div>
+        <div class="card"><div class="num">4</div><h3>Choose the folder</h3><p>Select the unzipped folder. Pin the 🔎 icon and click it on any store.</p></div>
+      </div>
+    </section>
+
+    <section id="tech">
+      <h2>Built with</h2>
+      <p class="sub">Free tools only.</p>
+      <div class="chips">
+        <span class="chip"><b>Chrome Extension</b> Manifest V3</span>
+        <span class="chip"><b>JavaScript</b> popup &amp; report</span>
+        <span class="chip"><b>Python</b> + FastAPI</span>
+        <span class="chip"><b>Shopify</b> public store data</span>
+        <span class="chip"><b>Gemini</b> AI tips (free tier)</span>
+        <span class="chip"><b>Vercel</b> hosting</span>
+      </div>
+    </section>
+
+    <section id="developer">
+      <h2>Developer</h2>
+      <p class="sub">Who built this project, and how to work with me.</p>
+      <div class="dev-card">
+        <div class="avatar">SU</div>
+        <div class="dev-text">
+          <h3>Syeda Umaima</h3>
+          <p class="role">Software engineer · Chrome extensions, Shopify stores, AI tools and web apps</p>
+          <p class="pitch">I build custom Chrome extensions and Shopify tools like this one. Need an extension for your
+             business, or help improving your Shopify store? I can build it for you.</p>
+          <div class="dev-buttons">
+            <a class="btn primary" href="https://www.fiverr.com/umaima886" target="_blank" rel="noopener">Hire me on Fiverr</a>
+            <a class="btn" href="mailto:imumaimabukhari@gmail.com?subject=Chrome%20extension%20project">✉ Email me</a>
+            <a class="btn" href="https://github.com/imumaimabukhari-123" target="_blank" rel="noopener">GitHub</a>
+          </div>
+          <ul class="contact">
+            <li>✉️ Email: <a href="mailto:imumaimabukhari@gmail.com">imumaimabukhari@gmail.com</a></li>
+            <li>💼 Fiverr: <a href="https://www.fiverr.com/umaima886" target="_blank" rel="noopener">fiverr.com/umaima886</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="site-foot">
+    © 2026 Syeda Umaima · Shopify Store Inspector ·
+    <a href="mailto:imumaimabukhari@gmail.com">imumaimabukhari@gmail.com</a> ·
+    <a href="https://www.fiverr.com/umaima886" target="_blank" rel="noopener">Fiverr</a> ·
+    <a href="/privacy">Privacy</a>
+  </footer>
+</body>
+</html>
