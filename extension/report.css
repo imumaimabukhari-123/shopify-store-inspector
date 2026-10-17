@@ -77,3 +77,4 @@
 .ssi .tip { background: none; border-left: 0; border-radius: 0; margin: 0; }
 .ssi .card h3 { color: var(--s-text); }
 @media (prefers-color-scheme: dark) { .ssi .btn:not(.ghost) { color: #14121b; } }
+.ssi .check.warn, .ssi .check.pass, .ssi .check.fail { background: none; border-left: 0; border-right: 0; border-bottom: 0; border-radius: 0; margin: 0; padding: 7px 0; color: inherit; font-size: inherit; }
