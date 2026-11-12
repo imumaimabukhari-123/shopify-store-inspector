@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
+RETRY_STATUS = (429, 500, 502, 503, 504)  # Gemini busy / overloaded - worth retrying
 BASE = "https://generativelanguage.googleapis.com/v1beta"
 CHAT_MODEL = "gemini-flash-lite-latest"
 EMBED_MODEL = "gemini-embedding-001"
@@ -21,21 +22,27 @@ class AIError(Exception):
 
 
 def _post(url: str, payload: dict, timeout: int = 45) -> dict:
-    """POST to Gemini, waiting and retrying when the free quota is busy (429)."""
+    """POST to Gemini, waiting and retrying when it is busy (429) or overloaded (5xx)."""
     if not API_KEY:
         raise AIError("GEMINI_API_KEY is missing. Add it to the .env file.")
     # The OpenAI-compatible chat endpoint wants a Bearer token; the native endpoints want x-goog-api-key.
     auth = {"Authorization": f"Bearer {API_KEY}"} if "/openai/" in url else {"x-goog-api-key": API_KEY}
+    # Free Gemini tiers are sometimes busy (429) or overloaded (500/502/503/504): wait and try again,
+    # within a time budget that stays under the 60 s Vercel limit.
+    deadline = time.monotonic() + 50
     for wait in (2, 5, 10, 0):
         try:
-            resp = requests.post(url, json=payload, headers={**auth, "Content-Type": "application/json"}, timeout=timeout)
+            resp = requests.post(url, json=payload, headers={**auth, "Content-Type": "application/json"}, timeout=max(5, min(timeout, deadline - time.monotonic())))
         except requests.RequestException:
+            if wait and time.monotonic() + wait < deadline:
+                time.sleep(wait)
+                continue
             raise AIError("Couldn't reach the AI service. Please try again.")
-        if resp.status_code == 429 and wait:
+        if resp.status_code in RETRY_STATUS and wait and time.monotonic() + wait < deadline:
             time.sleep(wait)
             continue
-        if resp.status_code == 429:
-            raise AIError("The free AI quota is busy right now. Please wait a minute and try again.")
+        if resp.status_code in RETRY_STATUS:
+            raise AIError("The AI service is busy right now. Please wait a few seconds and try again.")
         if not resp.ok:
             raise AIError(f"The AI service returned an error ({resp.status_code}).")
         return resp.json()
